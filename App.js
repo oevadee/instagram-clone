@@ -1,27 +1,27 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, Button, SafeAreaView, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Entypo from "react-native-vector-icons/Entypo";
 import {
   ExploreScreen,
   HomeScreen,
   AddImage,
-  ProfileScreen,
   StoreScreen,
 } from "./screens/mainStackScreens";
 import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from "react-native-safe-area-context";
+import ProfileScreen from './screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
 const app = () => {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <StatusBar barStyle='light-content' />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
@@ -54,6 +54,7 @@ const app = () => {
             },
             showLabel: false
           }}
+          initialRouteName='Profile'
         >
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Explore" component={ExploreScreen} />

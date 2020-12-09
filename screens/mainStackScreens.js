@@ -57,20 +57,6 @@ export const StoreScreen = ({ navigation }) => {
   );
 };
 
-export const ProfileScreen = ({ navigation }) => {
-  return (
-    <View style={[{ flex: 1, alignItems: "center", justifyContent: "center" }, styles.body]}>
-      <Text>Profile Screen</Text>
-      <Button
-        title="Home"
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
-      />
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   body: {
     backgroundColor: '#121212'
