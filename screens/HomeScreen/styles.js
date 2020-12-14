@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     height: 90,
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",marginBottom: 5
+    alignItems: "center",
+    marginBottom: 5
   },
 });
 

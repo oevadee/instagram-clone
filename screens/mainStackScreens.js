@@ -15,20 +15,6 @@ export const ExploreScreen = ({ navigation }) => {
   );
 };
 
-export const AddImage = ({ navigation }) => {
-  return (
-    <View style={[{ flex: 1, alignItems: "center", justifyContent: "center" }, styles.body]}>
-      <Text>Add Image</Text>
-      <Button
-        title="Home"
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
-      />
-    </View>
-  );
-};
-
 export const StoreScreen = ({ navigation }) => {
   return (
     <View style={[{ flex: 1, alignItems: "center", justifyContent: "center" }, styles.body]}>

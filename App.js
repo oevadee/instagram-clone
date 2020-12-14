@@ -15,11 +15,11 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 // Screens
 import {
   ExploreScreen,
-  AddImage,
   StoreScreen,
 } from "./screens/mainStackScreens";
 import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
+import AddImage from './screens/AddImage/AddImage';
 
 const Tab = createBottomTabNavigator();
 

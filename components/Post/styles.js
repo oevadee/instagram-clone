@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   },
   postImageContainer: {
     width: '100%',
+    height: '100vw',
     aspectRatio: 1,
   },
   postImage: {
