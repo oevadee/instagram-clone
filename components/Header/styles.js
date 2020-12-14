@@ -8,7 +8,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 20,
     marginTop: 10,
-    marginBottom: 16,
+    marginBottom: 8,
+  },
+  headerLogo: {
+    width: 120,
+    height: 40
   },
   userName: {
     display: "flex",

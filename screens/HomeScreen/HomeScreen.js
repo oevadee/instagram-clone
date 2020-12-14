@@ -1,18 +1,42 @@
 import React from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import styles from "./styles";
 
-const HomeScreen = ({ navigation }) => {
+// Components
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  SafeAreaView,
+  Image,
+} from "react-native";
+import Header from "../../components/Header/Header";
+import Story from "../../components/Story/Story";
+
+// Icons
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+import userData from "../../data/userData";
+import { ScrollView } from "react-native-gesture-handler";
+import Post from "../../components/Post/Post";
+
+const HomeScreen = () => {
   return (
-    <View style={[{ flex: 1, alignItems: "center", justifyContent: "center" }, styles.body]}>
-      <Text>TeLS</Text>
-    </View>
+    <SafeAreaView style={styles.body}>
+      <Header headerIcon={true} accountSwitcher={false} iconSet="Home" />
+      <ScrollView>
+        <View style={styles.stories}>
+          <Story />
+          <Story />
+          <Story />
+        </View>
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  body: {
-    backgroundColor: '#121212'
-  }
-})
 
 export default HomeScreen;
