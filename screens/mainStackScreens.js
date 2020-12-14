@@ -1,19 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
-
-export const HomeScreen = ({ navigation }) => {
-  return (
-    <View style={[{ flex: 1, alignItems: "center", justifyContent: "center" }, styles.body]}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Explore"
-        onPress={() => {
-          navigation.navigate("Explore");
-        }}
-      />
-    </View>
-  );
-};
+import React from 'react'
+import { StyleSheet, Text, View, Button } from "react-native";
 
 export const ExploreScreen = ({ navigation }) => {
   return (

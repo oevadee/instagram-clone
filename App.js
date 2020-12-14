@@ -1,27 +1,32 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, SafeAreaView, StatusBar } from "react-native";
+
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import {
-  ExploreScreen,
-  HomeScreen,
-  AddImage,
-  StoreScreen,
-} from "./screens/mainStackScreens";
+
+// Components
+import { StatusBar } from "react-native";
 import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from "react-native-safe-area-context";
-import ProfileScreen from './screens/ProfileScreen';
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+// Screens
+import {
+  ExploreScreen,
+  AddImage,
+  StoreScreen,
+} from "./screens/mainStackScreens";
+import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
+import HomeScreen from "./screens/HomeScreen/HomeScreen";
 
 const Tab = createBottomTabNavigator();
 
 const app = () => {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <StatusBar barStyle='light-content' />
+      <StatusBar barStyle="light-content" />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
@@ -47,14 +52,14 @@ const app = () => {
           })}
           tabBarOptions={{
             activeTintColor: "#f5f5f5",
-            inactiveTintColor: "#d5d5d5",
+            inactiveTintColor: "#rgb(132,132,132)",
             style: {
-              backgroundColor: "#121212",
-              borderTopColor: "transparent",
+              backgroundColor: "#010101",
+              borderTopColor: '#101010'
             },
-            showLabel: false
+            showLabel: false,
           }}
-          initialRouteName='Profile'
+          initialRouteName="HomeScreen"
         >
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Explore" component={ExploreScreen} />
