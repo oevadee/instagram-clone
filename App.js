@@ -3,6 +3,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 
 // Components
 import { StatusBar } from "react-native";
@@ -13,15 +14,15 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 // Screens
-import {
-  ExploreScreen,
-  StoreScreen,
-} from "./screens/mainStackScreens";
+import { ExploreScreen, StoreScreen } from "./screens/mainStackScreens";
 import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
-import AddImage from './screens/AddImage/AddImage';
+import AddImage from "./screens/AddImage/AddImage";
+import PreviewImage from "./screens/PreviewImage/PreviewImage";
+import ProfileStackScreen from "./screens/ProfileStackScreen";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const app = () => {
   return (
@@ -55,17 +56,17 @@ const app = () => {
             inactiveTintColor: "#rgb(132,132,132)",
             style: {
               backgroundColor: "#010101",
-              borderTopColor: '#101010'
+              borderTopColor: "#101010",
             },
             showLabel: false,
           }}
-          initialRouteName="HomeScreen"
+          initialRouteName="Profile"
         >
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Explore" component={ExploreScreen} />
           <Tab.Screen name="AddImage" component={AddImage} />
           <Tab.Screen name="Store" component={StoreScreen} />
-          <Tab.Screen name="Profile" component={ProfileScreen} />
+          <Tab.Screen name="Profile" component={ProfileStackScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

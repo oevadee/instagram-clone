@@ -13,8 +13,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 // Data
 import userData from "../../data/userData";
 import { ScrollView } from "react-native-gesture-handler";
+import PreviewImage from "../PreviewImage/PreviewImage";
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   const [pressed, setPressed] = useState(false);
 
   const handleLinkPress = () => {
@@ -73,7 +74,16 @@ const ProfileScreen = () => {
           </View>
           <View style={styles.galleryView}>
             {userData.userPosts.map((post) => (
-              <Miniature key={post._uid} imageUri={post.miniatureUri} />
+              <Miniature
+                onPress={() => navigation.push("PreviewImage", {
+                  miniatureUri: post.miniatureUri,
+                  likes: post.likes,
+                  description: post.description,
+                  user: post.user
+                })}
+                key={post._uid}
+                imageUri={post.miniatureUri}
+              />
             ))}
           </View>
         </View>

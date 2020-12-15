@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { Image, View, Pressable } from "react-native";
 import styles from "./styles";
 
-const Miniature = ({ imageUri }) => {
+const Miniature = ({ imageUri, onPress }) => {
   return (
-    <View style={styles.miniature}>
+    <Pressable onPress={onPress} style={styles.miniature}>
       <Image style={styles.miniatureImage} source={imageUri} />
-    </View>
+    </Pressable>
   );
 };
 

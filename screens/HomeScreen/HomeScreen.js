@@ -30,7 +30,7 @@ const HomeScreen = () => {
           <Story />
           <Story />
         </View>
-        {userData.userPosts.map(post => <Post userName={userData.userName} likes={post.likes} description={post.description} miniatureUri={post.miniatureUri} />)}
+        {userData.userPosts.map(post => <Post user={post.user} likes={post.likes} description={post.description} miniatureUri={post.miniatureUri} />)}
       </ScrollView>
     </SafeAreaView>
   );
