@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   postHeaderUserText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 14
+    fontSize: 15
   },
   postImageContainer: {
     width: '100%',
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 5,
   },
   postTagsUsername: {
     color: '#fff',
@@ -83,6 +84,10 @@ const styles = StyleSheet.create({
   postTagsDecsctiptionText: {
     color: '#fff',
     fontSize: 14,
+  },
+  commentsButton: {
+    color: "rgb(132,132,132)",
+    fontWeight: 'bold'
   }
 })
 

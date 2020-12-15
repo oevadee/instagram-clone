@@ -33,23 +33,23 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.stats}>
           <Image style={styles.statsLogo} source={userData.profilePicture} />
           <View style={styles.statsCount}>
-            <Text style={styles.statsCountNumber}>134</Text>
+            <Text style={styles.statsCountNumber}>{userData.posts}</Text>
             <Text style={styles.statsCountName}>Post</Text>
           </View>
           <View style={styles.statsCount}>
-            <Text style={styles.statsCountNumber}>966</Text>
+            <Text style={styles.statsCountNumber}>{userData.followers}</Text>
             <Text style={styles.statsCountName}>Followers</Text>
           </View>
           <View style={styles.statsCount}>
-            <Text style={styles.statsCountNumber}>494</Text>
+            <Text style={styles.statsCountNumber}>{userData.following}</Text>
             <Text style={styles.statsCountName}>Following</Text>
           </View>
         </View>
         <View style={styles.bio}>
-          <Text style={styles.bioName}>♌️</Text>
+          <Text style={styles.bioName}>{userData.name}</Text>
           <Text style={styles.bioDescription}>
-            20, asp faculty of design📍WWA{" "}
-            <Text onPress={handleLinkPress}>@prorzeczy</Text>
+            {userData.bio}{" "}
+            <Text onPress={handleLinkPress}>{userData.website}</Text>
           </Text>
           <Pressable
             onPress={() => setPressed(!pressed)}
@@ -75,12 +75,16 @@ const ProfileScreen = ({ navigation }) => {
           <View style={styles.galleryView}>
             {userData.userPosts.map((post) => (
               <Miniature
-                onPress={() => navigation.push("PreviewImage", {
-                  miniatureUri: post.miniatureUri,
-                  likes: post.likes,
-                  description: post.description,
-                  user: post.user
-                })}
+                onPress={() =>
+                  navigation.push("PreviewImage", {
+                    uri: post.uri,
+                    likes: post.likes,
+                    description: post.description,
+                    comments: post.comments,
+                    user: post.user,
+                    navigation: navigation
+                  })
+                }
                 key={post._uid}
                 imageUri={post.miniatureUri}
               />

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./styles";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 
 import userData from "../../data/userData";
 
 // Icons
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const Post = ({ user, likes, description, miniatureUri }) => {
+const Post = ({ user, likes, description, miniatureUri, comments, navigation }) => {
   const [liked, setLiked] = useState(false);
 
   return (
@@ -27,7 +27,12 @@ const Post = ({ user, likes, description, miniatureUri }) => {
       </View>
       <View style={styles.postUtils}>
         <View style={styles.postUtilsLeft}>
-          <Ionicons onPress={() => setLiked(!liked)} name="ios-heart" size={26} color={liked ? 'rgb(253, 50, 73)' : '#fff'} />
+          <Ionicons
+            onPress={() => setLiked(!liked)}
+            name="ios-heart"
+            size={26}
+            color={liked ? "rgb(253, 50, 73)" : "#fff"}
+          />
           <Ionicons name="ios-chatbubbles" size={26} color="#fff" />
           <Ionicons name="md-paper-plane" size={26} color="#fff" />
         </View>
@@ -36,7 +41,9 @@ const Post = ({ user, likes, description, miniatureUri }) => {
         </View>
       </View>
       <View style={styles.postTags}>
-        <Text style={styles.postTagsLikes}>{liked ? likes + 1 : likes} likes</Text>
+        <Text style={styles.postTagsLikes}>
+          {liked ? likes + 1 : likes} likes
+        </Text>
         <View style={styles.postTagsDescription}>
           <Text style={styles.postTagsUsername}>
             {user.userName}
@@ -44,6 +51,11 @@ const Post = ({ user, likes, description, miniatureUri }) => {
           </Text>
           <Text style={{ color: "#fff" }}>{description}</Text>
         </View>
+        <Pressable onPress={() => navigation.push("Comments", {
+          comments: comments
+        })}>
+          <Text style={styles.commentsButton}>View all 2 comments</Text>
+        </Pressable>
       </View>
     </View>
   );

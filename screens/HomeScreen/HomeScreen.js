@@ -9,6 +9,7 @@ import {
   Button,
   SafeAreaView,
   Image,
+  Pressable,
 } from "react-native";
 import Header from "../../components/Header/Header";
 import Story from "../../components/Story/Story";
@@ -20,7 +21,7 @@ import userData from "../../data/userData";
 import { ScrollView } from "react-native-gesture-handler";
 import Post from "../../components/Post/Post";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.body}>
       <Header headerIcon={true} accountSwitcher={false} iconSet="Home" />
@@ -30,7 +31,14 @@ const HomeScreen = () => {
           <Story />
           <Story />
         </View>
-        {userData.userPosts.map(post => <Post user={post.user} likes={post.likes} description={post.description} miniatureUri={post.miniatureUri} />)}
+        {userData.userPosts.map((post) => (
+          <Post
+            user={post.user}
+            likes={post.likes}
+            description={post.description}
+            miniatureUri={post.miniatureUri}
+          />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
