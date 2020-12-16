@@ -2,16 +2,10 @@ import React from "react";
 import styles from "./styles";
 
 // Components
-import { Button, SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
-import Header2 from '../../components/Header2/Header2';
-
-// Icons
-import Ionicons from "react-native-vector-icons/Ionicons";
-
-// Data
-import userData from "../../data/userData";
+import Header2 from "../../components/Header2/Header2";
 
 const PreviewImage = ({ navigation, route }) => {
   const { uri, likes, description, user, comments } = route.params;
@@ -19,7 +13,16 @@ const PreviewImage = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.body}>
       <Header2 navigation={navigation} />
-      <Post navigation={navigation} miniatureUri={uri} likes={likes} description={description} comments={comments} user={user} />
+      <ScrollView>
+        <Post
+          navigation={navigation}
+          miniatureUri={uri}
+          likes={likes}
+          description={description}
+          comments={comments}
+          user={user}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };

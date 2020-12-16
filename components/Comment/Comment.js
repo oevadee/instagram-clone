@@ -10,7 +10,7 @@ const Comment = ({ addedBy, comment, profilePicture }) => {
         source={{ uri: profilePicture }}
       />
       <View style={styles.commentTexts}>
-        <Text style={styles.commentTextsUser}>{addedBy} </Text>
+        <Text style={styles.commentTextsUser}>{addedBy}{'  '}</Text>
         <Text style={styles.commentTextsComment}>{comment}</Text>
       </View>
     </View>

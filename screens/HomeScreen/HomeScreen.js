@@ -33,10 +33,13 @@ const HomeScreen = ({ navigation }) => {
         </View>
         {userData.userPosts.map((post) => (
           <Post
+            key={post._uid}
             user={post.user}
             likes={post.likes}
             description={post.description}
             miniatureUri={post.miniatureUri}
+            comments={post.comments}
+            navigation={navigation}
           />
         ))}
       </ScrollView>

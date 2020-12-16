@@ -7,7 +7,14 @@ import userData from "../../data/userData";
 // Icons
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const Post = ({ user, likes, description, miniatureUri, comments, navigation }) => {
+const Post = ({
+  user,
+  likes,
+  description,
+  miniatureUri,
+  comments,
+  navigation,
+}) => {
   const [liked, setLiked] = useState(false);
 
   return (
@@ -16,7 +23,7 @@ const Post = ({ user, likes, description, miniatureUri, comments, navigation }) 
         <View style={styles.postHeaderUser}>
           <Image
             style={styles.postHeaderUserImage}
-            source={user.profilePicture}
+            source={{ uri: user.profilePicture }}
           />
           <Text style={styles.postHeaderUserText}>{user.userName}</Text>
         </View>
@@ -51,10 +58,19 @@ const Post = ({ user, likes, description, miniatureUri, comments, navigation }) 
           </Text>
           <Text style={{ color: "#fff" }}>{description}</Text>
         </View>
-        <Pressable onPress={() => navigation.push("Comments", {
-          comments: comments
-        })}>
-          <Text style={styles.commentsButton}>View all 2 comments</Text>
+        <Pressable
+          onPress={() =>
+            navigation.push("Comments", {
+              comments: comments,
+            })
+          }
+        >
+          <Text style={styles.commentsButton}>
+            View{" "}
+            {comments.length === 1
+              ? "1 comment"
+              : `all ${comments.length} comments`}
+          </Text>
         </Pressable>
       </View>
     </View>

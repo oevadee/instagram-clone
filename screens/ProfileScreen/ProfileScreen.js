@@ -31,7 +31,10 @@ const ProfileScreen = ({ navigation }) => {
       />
       <ScrollView>
         <View style={styles.stats}>
-          <Image style={styles.statsLogo} source={userData.profilePicture} />
+          <Image
+            style={styles.statsLogo}
+            source={{ uri: userData.profilePicture }}
+          />
           <View style={styles.statsCount}>
             <Text style={styles.statsCountNumber}>{userData.posts}</Text>
             <Text style={styles.statsCountName}>Post</Text>
@@ -82,7 +85,7 @@ const ProfileScreen = ({ navigation }) => {
                     description: post.description,
                     comments: post.comments,
                     user: post.user,
-                    navigation: navigation
+                    navigation: navigation,
                   })
                 }
                 key={post._uid}

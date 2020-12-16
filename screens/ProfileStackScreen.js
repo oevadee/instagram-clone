@@ -16,7 +16,6 @@ const ProfileStackScreen = () => {
     >
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="PreviewImage" component={PreviewImage} />
-      <Stack.Screen name="Comments" component={CommentScreen} />
     </Stack.Navigator>
   );
 };

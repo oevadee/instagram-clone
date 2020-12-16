@@ -8,7 +8,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 // Data
 import userData from "../../data/userData";
 
-const Header2 = ({ navigation }) => {
+const Header2 = ({ navigation, commentSectionActive = false }) => {
   return (
     <View style={styles.header}>
       <Ionicons
@@ -19,8 +19,14 @@ const Header2 = ({ navigation }) => {
         color="#fff"
       />
       <View style={styles.headerInfo}>
-        <Text style={styles.headerInfoUser}>{userData.userName}</Text>
-        <Text style={styles.headerInfoPosts}>Posts</Text>
+        {commentSectionActive ? (
+          <Text style={styles.headerInfoPosts}>Comments</Text>
+        ) : (
+          <>
+            <Text style={styles.headerInfoUser}>{userData.userName}</Text>
+            <Text style={styles.headerInfoPosts}>Posts</Text>
+          </>
+        )}
       </View>
     </View>
   );
