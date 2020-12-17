@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles";
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
-
-import userData from "../../data/userData";
+import { Text, View, Image, Pressable } from "react-native";
 
 // Icons
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -25,12 +23,14 @@ const Post = ({
             style={styles.postHeaderUserImage}
             source={{ uri: user.profilePicture }}
           />
-          <Text style={styles.postHeaderUserText}>{user.userName}</Text>
+          <Pressable onPress={() => navigation.push('UserProfile')}>
+            <Text style={styles.postHeaderUserText}>{user.userName}</Text>
+          </Pressable>
         </View>
         <Ionicons name="ios-more" size={22} color="#fff" />
       </View>
       <View style={styles.postImageContainer}>
-        <Image style={styles.postImage} source={miniatureUri} />
+        <Image style={styles.postImage} source={{ uri: miniatureUri }} />
       </View>
       <View style={styles.postUtils}>
         <View style={styles.postUtilsLeft}>

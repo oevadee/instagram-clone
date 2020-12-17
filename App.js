@@ -11,7 +11,6 @@ import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from "react-native-safe-area-context";
-import Ionicons from "react-native-vector-icons/Ionicons";
 
 // Screens
 import CommentScreen from "./screens/CommentScreen/CommentScreen";

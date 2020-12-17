@@ -6,7 +6,7 @@ import styles from "./styles";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 // Data
-import userData from "../../data/userData";
+import userData from "../../helpers/dataManager";
 
 const Header2 = ({ navigation, commentSectionActive = false }) => {
   return (

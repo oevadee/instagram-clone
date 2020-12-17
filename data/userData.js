@@ -67,20 +67,6 @@ const userData = {
           comment: "Be my wife",
           _uid: "420xyz714",
         },
-        {
-          addedBy: "julka.zbro",
-          profilePicture:
-            "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-19/s150x150/90705969_2738478659772036_6908005882555006976_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_ohc=Gqii87fwN1MAX_JiF91&tp=1&oh=8909ad35334301ad47fc17cb57676664&oe=6003F8C7",
-          comment: "Be my wife",
-          _uid: "420xyz714",
-        },
-        {
-          addedBy: "julka.zbro",
-          profilePicture:
-            "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-19/s150x150/90705969_2738478659772036_6908005882555006976_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_ohc=Gqii87fwN1MAX_JiF91&tp=1&oh=8909ad35334301ad47fc17cb57676664&oe=6003F8C7",
-          comment: "Be my wife",
-          _uid: "420xyz714",
-        },
       ],
     },
     {

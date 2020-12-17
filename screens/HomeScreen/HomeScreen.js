@@ -14,10 +14,7 @@ import {
 import Header from "../../components/Header/Header";
 import Story from "../../components/Story/Story";
 
-// Icons
-import Ionicons from "react-native-vector-icons/Ionicons";
-
-import userData from "../../data/userData";
+import userData from "../../helpers/dataManager";
 import { ScrollView } from "react-native-gesture-handler";
 import Post from "../../components/Post/Post";
 

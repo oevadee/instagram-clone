@@ -11,7 +11,8 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import Comment from "../../components/Comment/Comment";
 import Header2 from "../../components/Header2/Header2";
 import styles from "./styles";
-import userData from "../../data/userData";
+import userData from "../../helpers/dataManager";
+
 
 const CommentScreen = ({ navigation, route }) => {
   const { comments } = route.params;

@@ -3,7 +3,6 @@ import styles from "./styles";
 
 // Components
 import { SafeAreaView, ScrollView } from "react-native";
-import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
 import Header2 from "../../components/Header2/Header2";
 
