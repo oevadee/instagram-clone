@@ -15,6 +15,7 @@ import {
 // Screens
 import CommentScreen from "./screens/CommentScreen/CommentScreen";
 import HomeTabScreen from "./screens/HomeTabScreen";
+import CreateFeed from "./components/CreateFeed/CreateFeed";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

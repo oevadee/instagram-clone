@@ -14,8 +14,6 @@ const AddImage = () => {
   const [isPreview, setIsPreview] = useState(false);
   const cameraRef = useRef();
 
-  const handlePictureSnap = () => {};
-
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();

@@ -12,8 +12,10 @@ const Post = ({
   views,
   description,
   miniatureUri,
-  comments,
-  // navigation,
+  comments = 0,
+  profilePicture,
+  userName,
+  commentsLength
 }) => {
   const [liked, setLiked] = useState(false);
   const navigation = useNavigation();
@@ -24,10 +26,10 @@ const Post = ({
         <View style={styles.postHeaderUser}>
           <Image
             style={styles.postHeaderUserImage}
-            source={{ uri: user.profilePicture }}
+            source={{ uri: profilePicture }}
           />
           <Pressable onPress={() => navigation.push("UserProfile")}>
-            <Text style={styles.postHeaderUserText}>{user.userName}</Text>
+            <Text style={styles.postHeaderUserText}>{userName}</Text>
           </Pressable>
         </View>
         <Ionicons name="ios-more" size={22} color="#fff" />
@@ -56,14 +58,14 @@ const Post = ({
       <View style={styles.postTags}>
         {likes ? (
           <Text style={styles.postTagsLikes}>
-            {liked ? likes + 1 : likes} likes
+            {liked ? parseInt(likes) + 1 : parseInt(likes)} likes
           </Text>
         ) : (
           <Text style={styles.postTagsLikes}>{views} views</Text>
         )}
         <View style={styles.postTagsDescription}>
           <Text style={styles.postTagsUsername}>
-            {user.userName}
+            {userName}
             {"  "}
           </Text>
           <Text style={{ color: "#fff" }}>{description}</Text>
@@ -77,9 +79,9 @@ const Post = ({
         >
           <Text style={styles.commentsButton}>
             View{" "}
-            {comments.length === 1
+            {commentsLength === 1
               ? "1 comment"
-              : `all ${comments.length} comments`}
+              : `all ${commentsLength} comments`}
           </Text>
         </Pressable>
       </View>

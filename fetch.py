@@ -11,7 +11,7 @@ import json
 path = "/Users/Work/Downloads/chromedriver"
 login = "adee.pfd"
 password = "" # Erase before commit !!! XDD
-post_counter = 25 # nie wiem czy wiecej niz 10-12 smignie 
+post_counter = 10 # nie wiem czy wiecej niz 10-12 smignie 
 
 # selenium może scrollować po x liczbie postów
 
