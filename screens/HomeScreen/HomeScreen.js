@@ -33,6 +33,7 @@ const HomeScreen = ({ navigation }) => {
             key={post._uid}
             user={post.user}
             likes={post.likes}
+            views={post.views}
             description={post.description}
             miniatureUri={post.miniatureUri}
             comments={post.comments}

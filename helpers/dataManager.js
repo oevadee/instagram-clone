@@ -1,7 +1,10 @@
 // Import chick
-import flloeth from '../data/flloeth.json';
-import olaprokopczuk from '../data/olaprokopczuk.json';
+import flloeth from "../data/flloeth.json";
+import olaprokopczuk from "../data/olaprokopczuk.json";
+import karolina_malczewska from "../data/karolina_malczewska.json";
 
-const userData = olaprokopczuk;
+const currentUser = flloeth;
 
-export default userData;
+export const userData = [flloeth, olaprokopczuk, karolina_malczewska];
+
+export default currentUser;

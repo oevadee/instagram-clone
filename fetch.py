@@ -8,10 +8,10 @@ from uuid import uuid4
 import time
 import json
 
-path = ""
-login = ""
+path = "/Users/Work/Downloads/chromedriver"
+login = "adee.pfd"
 password = "" # Erase before commit !!! XDD
-post_counter = 12 # nie wiem czy wiecej niz 10-12 smignie 
+post_counter = 25 # nie wiem czy wiecej niz 10-12 smignie 
 
 # selenium może scrollować po x liczbie postów
 
@@ -23,6 +23,9 @@ time.sleep(2)
 
 cookies_element = driver.find_element_by_class_name("aOOlW.bIiDR")
 cookies_element.click()
+time.sleep(2)
+driver.execute_script("window.scrollTo(0, 200)")
+time.sleep(2)
 
 userData = {}
 
@@ -103,7 +106,10 @@ for box in post_boxes:
     print(post_comments)
     if post_comments:
         post["description"] = post_comments[0].find_elements_by_xpath(".//span")[-1].text
-        post['likes'] = driver.find_element_by_class_name('Nm9Fw').find_element_by_xpath(".//span").text
+        try:
+            post['likes'] = driver.find_element_by_class_name('Nm9Fw').find_element_by_xpath(".//button").find_element_by_xpath('.//span').text
+        except:
+            post['views'] = driver.find_element_by_class_name('vcOH2').find_element_by_xpath('.//span').text
         post["comments"] = []
         if len(post_comments) > 1:
             for comment in post_comments[1:]:

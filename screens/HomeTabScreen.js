@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "./HomeScreen/HomeScreen";
+import HomeStackScreen from "./HomeStackScreen";
 
 // Screens
 import { ExploreScreen, StoreScreen } from "./mainStackScreens";
@@ -51,7 +51,7 @@ const HomeTabScreen = () => {
       }}
       initialRouteName="Home"
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Home" component={HomeStackScreen} />
       <Tab.Screen name="Explore" component={ExploreScreen} />
       <Tab.Screen name="AddImage" component={AddImage} />
       <Tab.Screen name="Store" component={StoreScreen} />

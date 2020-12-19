@@ -62,6 +62,7 @@ const ProfileScreen = ({ navigation }) => {
                   navigation.push("PreviewImage", {
                     uri: post.uri,
                     likes: post.likes,
+                    views: post.views,
                     description: post.description,
                     comments: post.comments,
                     user: post.user,

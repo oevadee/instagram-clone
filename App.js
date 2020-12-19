@@ -31,10 +31,7 @@ const app = () => {
           }}
         >
           <Stack.Screen name="Home" component={HomeTabScreen} />
-          <Stack.Screen
-            name="Comments"
-            component={CommentScreen}
-          />
+          <Stack.Screen name="Comments" component={CommentScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

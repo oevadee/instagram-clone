@@ -7,7 +7,7 @@ import Post from "../../components/Post/Post";
 import Header2 from "../../components/Header2/Header2";
 
 const PreviewImage = ({ navigation, route }) => {
-  const { uri, likes, description, user, comments } = route.params;
+  const { uri, likes, views, description, user, comments } = route.params;
 
   return (
     <SafeAreaView style={styles.body}>
@@ -17,6 +17,7 @@ const PreviewImage = ({ navigation, route }) => {
           navigation={navigation}
           miniatureUri={uri}
           likes={likes}
+          views={views}
           description={description}
           comments={comments}
           user={user}

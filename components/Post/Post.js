@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./styles";
 import { Text, View, Image, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Icons
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -8,12 +9,14 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 const Post = ({
   user,
   likes,
+  views,
   description,
   miniatureUri,
   comments,
-  navigation,
+  // navigation,
 }) => {
   const [liked, setLiked] = useState(false);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.post}>
@@ -23,7 +26,7 @@ const Post = ({
             style={styles.postHeaderUserImage}
             source={{ uri: user.profilePicture }}
           />
-          <Pressable onPress={() => navigation.push('UserProfile')}>
+          <Pressable onPress={() => navigation.push("UserProfile")}>
             <Text style={styles.postHeaderUserText}>{user.userName}</Text>
           </Pressable>
         </View>
@@ -40,7 +43,10 @@ const Post = ({
             size={26}
             color={liked ? "rgb(253, 50, 73)" : "#fff"}
           />
-          <Ionicons name="ios-chatbubbles" size={26} color="#fff" />
+          <Ionicons name="ios-chatbubbles" size={26} color="#fff" onPress={() => navigation.push("Comments", {
+              comments: comments,
+              commentInputActive: true,
+            })} />
           <Ionicons name="md-paper-plane" size={26} color="#fff" />
         </View>
         <View style={styles.postUtilsRight}>
@@ -48,9 +54,13 @@ const Post = ({
         </View>
       </View>
       <View style={styles.postTags}>
-        <Text style={styles.postTagsLikes}>
-          {liked ? likes + 1 : likes} likes
-        </Text>
+        {likes ? (
+          <Text style={styles.postTagsLikes}>
+            {liked ? likes + 1 : likes} likes
+          </Text>
+        ) : (
+          <Text style={styles.postTagsLikes}>{views} views</Text>
+        )}
         <View style={styles.postTagsDescription}>
           <Text style={styles.postTagsUsername}>
             {user.userName}

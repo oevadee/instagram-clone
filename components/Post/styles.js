@@ -87,7 +87,13 @@ const styles = StyleSheet.create({
   },
   commentsButton: {
     color: "rgb(132,132,132)",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  date: {
+    color: "rgb(132,132,132)",
+    fontWeight: 'bold',
+    fontSize: 10
   }
 })
 

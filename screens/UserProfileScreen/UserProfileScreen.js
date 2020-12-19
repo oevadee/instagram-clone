@@ -1,8 +1,8 @@
 import React from "react";
-import styles from './styles'
+import styles from "./styles";
 import { Pressable, SafeAreaView, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import Header2 from '../../components/Header2/Header2';
+import Header2 from "../../components/Header2/Header2";
 
 // Icons
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -12,10 +12,10 @@ import Miniature from "../../components/Miniature/Miniature";
 // Data
 import userData from "../../helpers/dataManager";
 
-const UserProfileScreen = () => {
+const UserProfileScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.body}>
-      <Header2 />
+      <Header2 navigation={navigation} />
       <ScrollView>
         <ProfileInfo
           profilePicture={userData.profilePicture}
