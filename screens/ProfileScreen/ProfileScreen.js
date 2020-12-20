@@ -19,36 +19,30 @@ import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 import * as firebase from "firebase";
 import db from "../../firebase";
 
-// Data
-import currentUser from "../../helpers/dataManager";
+// Redux
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
 
 const ProfileScreen = ({ navigation }) => {
   const [pressed, setPressed] = useState(false);
-  const [user, setUser] = useState(null);
+  // const user = useSelector(selectUser);
   const [userPosts, setUserPosts] = useState(null);
 
   useEffect(() => {
-    db.collection("userData")
-      .doc("users")
-      .collection("users")
-      .doc(currentUser)
-      .get()
-      .then((snap) => {
-        setUser(snap.data());
-      });
-    db.collection("userData")
-      .doc("users")
-      .collection("users")
-      .doc(currentUser)
-      .collection("userPosts")
-      .onSnapshot(snap => {
-        setUserPosts(snap.docs.map(doc => doc.data()))
-      })
-  }, [currentUser]);
+    user &&
+      db.collection("userData")
+        .doc("users")
+        .collection("users")
+        .doc(user.userId)
+        .collection("userPosts")
+        .onSnapshot((snap) => {
+          setUserPosts(snap.docs.map((doc) => doc.data()));
+        });
+  }, [user]);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    console.log(userPosts);
+  }, [userPosts]);
 
   return (
     <SafeAreaView style={styles.body}>

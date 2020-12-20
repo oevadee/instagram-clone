@@ -33,13 +33,8 @@ const HomeScreen = ({ navigation }) => {
       // .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
         setPosts(snapshot.docs.map((doc) => doc.data()));
-        console.log(snapshot.docs.map((doc) => doc.data()));
       });
   }, []);
-
-  useEffect(() => {
-    console.log(commentsLength);
-  }, [commentsLength]);
 
   return (
     <SafeAreaView style={styles.body}>

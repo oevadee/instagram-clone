@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderColor: "rgb(20, 22, 23)",
     borderWidth: 1,
-    color: '#fff'
+    color: "#fff",
   },
   passwordInputOption: {
     borderColor: "rgb(38, 39, 40)",
@@ -57,6 +57,25 @@ const styles = StyleSheet.create({
     color: "rgb(123, 126, 128)",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  registerContainer: {
+    height: 200,
+    width: "100%",
+    borderTopColor: "rgb(22, 23, 24)",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  registerText: {
+    color: "rgb(145, 146, 147)",
+    marginRight: 3,
+  },
+  registerButton: {
+    padding: 5
+  },
+  registerButtonText: {
+    color: "rgb(0, 145, 232)",
   },
 });
 /*

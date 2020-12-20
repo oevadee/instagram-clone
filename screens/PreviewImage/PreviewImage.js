@@ -7,7 +7,7 @@ import Post from "../../components/Post/Post";
 import Header2 from "../../components/Header2/Header2";
 
 const PreviewImage = ({ navigation, route }) => {
-  const { _uid, uri, likes, views, description, userName, profilePicture, comments } = route.params;
+  const { _uid, uri, likes, views, description, userName, profilePicture } = route.params;
 
   return (
     <SafeAreaView style={styles.body}>

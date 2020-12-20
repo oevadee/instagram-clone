@@ -17,7 +17,9 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
 
   const loginUser = () => {
-    auth.signInWithEmailAndPassword(login, password).catch(err => alert(err.message))
+    auth
+      .signInWithEmailAndPassword(login, password)
+      .catch((err) => alert(err.message));
     setLogin("");
     setPassword("");
   };
@@ -51,6 +53,12 @@ const LoginScreen = () => {
       <Pressable style={styles.loginButton} onPress={loginUser}>
         <Text style={styles.loginButtonText}>Log In</Text>
       </Pressable>
+      <View style={styles.registerContainer}>
+        <Text style={styles.registerText}>Don't have an account?</Text>
+        <Pressable style={styles.registerButton} onPress={() => console.log('click')}>
+          <Text style={styles.registerButtonText}>Sign Up.</Text>
+        </Pressable>
+      </View>
     </KeyboardAvoidingView>
   );
 };

@@ -4,14 +4,23 @@ import styles from "./styles";
 // Components
 import { View, Text, Image } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useDispatch } from "react-redux";
+import { auth } from "../../firebase";
 
 const Header = ({ headerText, headerIcon, iconSet }) => {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.header}>
       <View style={styles.userName}>
         {headerText && <Text style={styles.userNameText}>{headerText}</Text>}
-        {headerIcon && <Image style={styles.headerLogo} source={require('../../images/Instagram-Logo.png')} />}
-        {iconSet === 'Profile' && (
+        {headerIcon && (
+          <Image
+            style={styles.headerLogo}
+            source={require("../../images/Instagram-Logo.png")}
+          />
+        )}
+        {iconSet === "Profile" && (
           <Ionicons
             name="ios-arrow-down"
             size={16}
@@ -29,7 +38,12 @@ const Header = ({ headerText, headerIcon, iconSet }) => {
               color="#fff"
               style={{ marginRight: 25 }}
             />
-            <Ionicons name="md-menu" size={26} color="#fff" />
+            <Ionicons
+              name="md-menu"
+              size={26}
+              color="#fff"
+              onPress={() => auth.signOut()}
+            />
           </>
         )}
         {iconSet === "Home" && (

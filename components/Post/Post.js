@@ -9,24 +9,41 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import * as firebase from "firebase";
 import db from "../../firebase";
 
+import * as Haptics from "expo-haptics";
+
 const Post = ({
   _uid,
   likes,
   views,
   description,
   uri,
-  comments = 0,
   profilePicture,
   userName,
 }) => {
   const [liked, setLiked] = useState(false);
   const [commentsSize, setCommentsSize] = useState(null);
+  const [comments, setComments] = useState(null);
 
   const navigation = useNavigation();
 
   useEffect(() => {
-    db.collection('userData').doc('posts').collection('posts').doc(_uid).collection('comments').onSnapshot(snap => setCommentsSize(snap.size))
-  }, [_uid])
+    db.collection("userData")
+      .doc("posts")
+      .collection("posts")
+      .doc(_uid)
+      .collection("comments")
+      .onSnapshot((snap) => setCommentsSize(snap.size));
+    db.collection("userData")
+      .doc("posts")
+      .collection("posts")
+      .doc(_uid)
+      .collection("comments")
+      .onSnapshot((snap) => setComments(snap.docs.map((doc) => doc.data())));
+  }, [_uid]);
+
+  useEffect(() => {
+    console.log(comments)
+  }, [comments])
 
   return (
     <View style={styles.post}>
@@ -48,7 +65,10 @@ const Post = ({
       <View style={styles.postUtils}>
         <View style={styles.postUtilsLeft}>
           <Ionicons
-            onPress={() => setLiked(!liked)}
+            onPress={() => {
+              setLiked(!liked);
+              Haptics.selectionAsync()
+            }}
             name="ios-heart"
             size={26}
             color={liked ? "rgb(253, 50, 73)" : "#fff"}
@@ -88,15 +108,13 @@ const Post = ({
         <Pressable
           onPress={() =>
             navigation.push("Comments", {
-              _uid: _uid
+              comments: comments,
             })
           }
         >
           <Text style={styles.commentsButton}>
             View{" "}
-            {commentsSize === 1
-              ? "1 comment"
-              : `all ${commentsSize} comments`}
+            {comments && commentsSize === 1 ? "1 comment" : `all ${commentsSize} comments`}
           </Text>
         </Pressable>
       </View>
