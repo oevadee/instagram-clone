@@ -70,6 +70,7 @@ const CommentScreen = ({ navigation, route }) => {
           <View style={styles.commentAdderInputContainer}>
             <TextInput
               ref={commentInput}
+              keyboardAppearance='dark'
               style={styles.commentAdderInput}
               placeholder={`Add a comment as ${userData.userName}...`}
               placeholderTextColor="#ccc"

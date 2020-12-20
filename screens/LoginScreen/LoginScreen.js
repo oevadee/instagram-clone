@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,18 @@ import {
 import { TextInput } from "react-native-gesture-handler";
 import styles from "./styles";
 
+import { auth } from "../../firebase";
+
 const LoginScreen = () => {
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginUser = () => {
+    auth.signInWithEmailAndPassword(login, password).catch(err => alert(err.message))
+    setLogin("");
+    setPassword("");
+  };
+
   return (
     <KeyboardAvoidingView style={styles.body} behavior="padding">
       <Image
@@ -19,20 +30,25 @@ const LoginScreen = () => {
       />
       <TextInput
         style={styles.loginInput}
+        value={login}
+        onChangeText={(text) => setLogin(text)}
         placeholder="Phone number, username or email"
         placeholderTextColor="rgb(123, 123, 123)"
-        keyboardAppearance='dark'
+        keyboardAppearance="dark"
       />
       <TextInput
         style={[styles.loginInput, styles.passwordInputOption]}
+        value={password}
+        secureTextEntry={true}
+        onChangeText={(text) => setPassword(text)}
         placeholder="Password"
         placeholderTextColor="rgb(123, 123, 123)"
-        keyboardAppearance='dark'
+        keyboardAppearance="dark"
       />
       <Pressable style={styles.loginForgotContainer}>
         <Text style={styles.loginForgot}>Fortgot password?</Text>
       </Pressable>
-      <Pressable style={styles.loginButton}>
+      <Pressable style={styles.loginButton} onPress={loginUser}>
         <Text style={styles.loginButtonText}>Log In</Text>
       </Pressable>
     </KeyboardAvoidingView>

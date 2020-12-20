@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
@@ -12,6 +12,9 @@ import {
   initialWindowMetrics,
 } from "react-native-safe-area-context";
 
+// Firebase
+import db, { auth } from "./firebase";
+
 // Screens
 import CommentScreen from "./screens/CommentScreen/CommentScreen";
 import HomeTabScreen from "./screens/HomeTabScreen";
@@ -23,6 +26,21 @@ const Stack = createStackNavigator();
 
 const app = () => {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log("User is: ", authUser);
+      authUser && setUser({
+        userId: authUser.uid,
+        email: authUser.email,
+      })
+    })
+  }, [])
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+
   return (
     <>
     {user ? (

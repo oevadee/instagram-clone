@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderColor: "rgb(20, 22, 23)",
     borderWidth: 1,
+    color: '#fff'
   },
   passwordInputOption: {
     borderColor: "rgb(38, 39, 40)",
