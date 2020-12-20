@@ -25,7 +25,7 @@ import { selectUser } from "../../features/userSlice";
 
 const ProfileScreen = ({ navigation }) => {
   const [pressed, setPressed] = useState(false);
-  // const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
   const [userPosts, setUserPosts] = useState(null);
 
   useEffect(() => {

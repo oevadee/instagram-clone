@@ -59,9 +59,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   registerContainer: {
-    height: 200,
+    position: 'absolute',
+    bottom: 0,
+    height: 80,
     width: "100%",
     borderTopColor: "rgb(22, 23, 24)",
+    borderWidth: 1,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",

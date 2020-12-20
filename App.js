@@ -18,8 +18,8 @@ import db, { auth } from "./firebase";
 // Screens
 import CommentScreen from "./screens/CommentScreen/CommentScreen";
 import HomeTabScreen from "./screens/HomeTabScreen";
+import LoginStackScreens from "./screens/LoginStackScreens";
 import CreateFeed from "./components/CreateFeed/CreateFeed";
-import LoginScreen from "./screens/LoginScreen/LoginScreen";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -41,17 +41,21 @@ const App = () => {
           .collection("users")
           .doc(authUser.uid)
           .get()
-          .then((snap) => dispatch(login({
-            userId: snap.data().userId,
-            userName: snap.data().userName,
-            profilePicture: snap.data().profilePicture,
-            posts: snap.data().posts,
-            followers: snap.data().followers,
-            following: snap.data().following,
-            name: snap.data().name,
-            bio: snap.data().bio,
-            website: snap.data().website,
-          })));
+          .then((snap) =>
+            dispatch(
+              login({
+                userId: snap.data().userId,
+                userName: snap.data().userName,
+                profilePicture: snap.data().profilePicture,
+                posts: snap.data().posts,
+                followers: snap.data().followers,
+                following: snap.data().following,
+                name: snap.data().name,
+                bio: snap.data().bio,
+                website: snap.data().website,
+              })
+            )
+          );
       } else {
         dispatch(logout());
       }
@@ -82,7 +86,9 @@ const App = () => {
           </NavigationContainer>
         </SafeAreaProvider>
       ) : (
-        <LoginScreen />
+        <NavigationContainer>
+          <LoginStackScreens />
+        </NavigationContainer>
       )}
     </>
   );

@@ -9,12 +9,12 @@ const Stack = createStackNavigator();
 const HomeStackScreen = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Profile"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Profile" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="UserProfile" component={UserProfileScreen} />
       <Stack.Screen name="PreviewImage" component={PreviewImage} />
     </Stack.Navigator>
