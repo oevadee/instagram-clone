@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
@@ -16,26 +16,34 @@ import {
 import CommentScreen from "./screens/CommentScreen/CommentScreen";
 import HomeTabScreen from "./screens/HomeTabScreen";
 import CreateFeed from "./components/CreateFeed/CreateFeed";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const app = () => {
+  const [user, setUser] = useState(null);
   return (
-    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <StatusBar barStyle="light-content" />
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="Home" component={HomeTabScreen} />
-          <Stack.Screen name="Comments" component={CommentScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <>
+    {user ? (
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <StatusBar barStyle="light-content" />
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="Home" component={HomeTabScreen} />
+            <Stack.Screen name="Comments" component={CommentScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    ) : (
+      <LoginScreen />
+    )}
+    </>
   );
 };
 
