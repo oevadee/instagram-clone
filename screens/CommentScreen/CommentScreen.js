@@ -11,10 +11,11 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import Comment from "../../components/Comment/Comment";
 import Header2 from "../../components/Header2/Header2";
 import styles from "./styles";
-import userData from '../../helpers/dataManager';
+import userData from "../../helpers/dataManager";
+import db from "../../firebase";
 
 const CommentScreen = ({ navigation, route }) => {
-  const { comments, commentInputActive } = route.params;
+  const { _uid, commentInputActive } = route.params;
 
   const [commentSet, setCommentSet] = useState([]);
   const [commentInputValue, setCommentInputValue] = useState("");
@@ -23,8 +24,13 @@ const CommentScreen = ({ navigation, route }) => {
   const commentInput = useRef(null);
 
   useEffect(() => {
-    setCommentSet(comments);
-  }, [comments]);
+    db.collection("userData")
+      .doc("posts")
+      .collection("posts")
+      .doc(_uid)
+      .collection("comments")
+      .onSnapshot((snap) => setCommentSet(snap.docs.map((doc) => doc.data())));
+  }, [_uid]);
 
   const handleCommentAdd = () => {
     setCommentSet([
@@ -40,12 +46,12 @@ const CommentScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     commentInput.current.focus();
-  }, [commentInputActive])
+  }, [commentInputActive]);
 
   return (
     <SafeAreaView style={styles.body}>
       <Header2 navigation={navigation} commentSectionActive={true} />
-      <ScrollView indicatorStyle='white'>
+      <ScrollView indicatorStyle="white">
         {commentSet.map(({ addedBy, comment, profilePicture, _uid }) => (
           <Comment
             key={_uid}

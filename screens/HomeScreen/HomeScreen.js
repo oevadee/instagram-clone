@@ -31,18 +31,11 @@ const HomeScreen = ({ navigation }) => {
       .doc("posts")
       .collection("posts")
       // .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
-        setPosts(snapshot.docs.map((doc) => doc.data()))
-      );
+      .onSnapshot((snapshot) => {
+        setPosts(snapshot.docs.map((doc) => doc.data()));
+        console.log(snapshot.docs.map((doc) => doc.data()));
+      });
   }, []);
-
-  useEffect(() => {
-    db.collection("posts")
-      .doc("5nKKo8KOVDRgcmk25JLP")
-      .collection("comments")
-      .get()
-      .then((snap) => setCommentsLength(snap.size));
-  }, [posts]);
 
   useEffect(() => {
     console.log(commentsLength);
@@ -61,14 +54,13 @@ const HomeScreen = ({ navigation }) => {
           return (
             <Post
               key={post._uid}
+              _uid={post._uid}
               profilePicture={post.profilePicture}
               userName={post.userName}
               likes={post.likes}
               views={post.views}
               description={post.description}
-              miniatureUri={post.miniatureUri}
-              comments={post.comments}
-              commentsLength={commentsLength}
+              uri={post.uri}
             />
           );
         })}

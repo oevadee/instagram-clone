@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import { Text, View, Image, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -6,19 +6,27 @@ import { useNavigation } from "@react-navigation/native";
 // Icons
 import Ionicons from "react-native-vector-icons/Ionicons";
 
+import * as firebase from "firebase";
+import db from "../../firebase";
+
 const Post = ({
-  user,
+  _uid,
   likes,
   views,
   description,
-  miniatureUri,
+  uri,
   comments = 0,
   profilePicture,
   userName,
-  commentsLength
 }) => {
   const [liked, setLiked] = useState(false);
+  const [commentsSize, setCommentsSize] = useState(null);
+
   const navigation = useNavigation();
+
+  useEffect(() => {
+    db.collection('userData').doc('posts').collection('posts').doc(_uid).collection('comments').onSnapshot(snap => setCommentsSize(snap.size))
+  }, [_uid])
 
   return (
     <View style={styles.post}>
@@ -35,7 +43,7 @@ const Post = ({
         <Ionicons name="ios-more" size={22} color="#fff" />
       </View>
       <View style={styles.postImageContainer}>
-        <Image style={styles.postImage} source={{ uri: miniatureUri }} />
+        <Image style={styles.postImage} source={{ uri: uri }} />
       </View>
       <View style={styles.postUtils}>
         <View style={styles.postUtilsLeft}>
@@ -45,10 +53,17 @@ const Post = ({
             size={26}
             color={liked ? "rgb(253, 50, 73)" : "#fff"}
           />
-          <Ionicons name="ios-chatbubbles" size={26} color="#fff" onPress={() => navigation.push("Comments", {
-              comments: comments,
-              commentInputActive: true,
-            })} />
+          <Ionicons
+            name="ios-chatbubbles"
+            size={26}
+            color="#fff"
+            onPress={() =>
+              navigation.push("Comments", {
+                comments: comments,
+                commentInputActive: true,
+              })
+            }
+          />
           <Ionicons name="md-paper-plane" size={26} color="#fff" />
         </View>
         <View style={styles.postUtilsRight}>
@@ -73,15 +88,15 @@ const Post = ({
         <Pressable
           onPress={() =>
             navigation.push("Comments", {
-              comments: comments,
+              _uid: _uid
             })
           }
         >
           <Text style={styles.commentsButton}>
             View{" "}
-            {commentsLength === 1
+            {commentsSize === 1
               ? "1 comment"
-              : `all ${commentsLength} comments`}
+              : `all ${commentsSize} comments`}
           </Text>
         </Pressable>
       </View>

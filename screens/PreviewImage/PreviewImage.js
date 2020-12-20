@@ -7,20 +7,21 @@ import Post from "../../components/Post/Post";
 import Header2 from "../../components/Header2/Header2";
 
 const PreviewImage = ({ navigation, route }) => {
-  const { uri, likes, views, description, user, comments } = route.params;
+  const { _uid, uri, likes, views, description, userName, profilePicture, comments } = route.params;
 
   return (
     <SafeAreaView style={styles.body}>
       <Header2 navigation={navigation} />
       <ScrollView>
         <Post
+          _uid={_uid}
           navigation={navigation}
-          miniatureUri={uri}
+          uri={uri}
           likes={likes}
           views={views}
           description={description}
-          comments={comments}
-          user={user}
+          userName={userName}
+          profilePicture={profilePicture}
         />
       </ScrollView>
     </SafeAreaView>
