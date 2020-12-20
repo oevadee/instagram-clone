@@ -2,21 +2,25 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./LoginScreen/LoginScreen";
 import RegisterScreen from "./RegisterScreen/RegisterScreen";
-import CompleteRegistration from "./CompleteRegistration/CompleteRegistration";
+import RegistrationAddName from "./RegistrationAddName/RegistrationAddName";
+import RegistrationSetUsername from "./RegistrationSetUsername/RegistrationSetUsername";
+import RegistrationWelcomeScreen from "./RegistrationWelcomeScreen/RegistrationWelcomeScreen";
 
 const Stack = createStackNavigator();
 
 const ProfileStackScreens = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Register"
+      initialRouteName="Login"
       screenOptions={{
         headerShown: false,
       }}
     >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="Complete Registration" component={CompleteRegistration} />
+      <Stack.Screen name="RegistrationAddName" component={RegistrationAddName} />
+      <Stack.Screen name="RegistrationWelcomeScreen" component={RegistrationWelcomeScreen} />
+      <Stack.Screen name="RegistrationSetUsername" component={RegistrationSetUsername} />
     </Stack.Navigator>
   );
 };

@@ -4,8 +4,8 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     backgroundColor: "#000000",
-    borderColor: "red",
-    borderWidth: 1,
+    // borderColor: "red",
+    // borderWidth: 1,
   },
   emailContainer: {
     marginTop: 30,
@@ -17,22 +17,14 @@ const styles = StyleSheet.create({
   header: {
     color: "#fff",
     fontSize: 27,
-    marginBottom: 10,
-  },
-  emailChooser: {
-    borderWidth: 1,
-    height: 40,
-    width: "100%",
-    borderBottomColor: '#fff',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
     marginBottom: 20,
   },
-  emailChooserText: {
-    color: "#fff",
-    fontSize: 20,
+  nameText: {
+    color: "rgb(119, 119, 119)",
+    fontSize: 18,
     fontWeight: "bold",
+    marginBottom: 25,
+    textAlign: 'center'
   },
   registerInput: {
     width: "100%",

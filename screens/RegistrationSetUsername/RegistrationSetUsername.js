@@ -4,10 +4,10 @@ import { TextInput } from "react-native-gesture-handler";
 import db, { auth } from "../../firebase";
 import styles from "./styles";
 
-const CompleteRegistration = ({ navigation, route }) => {
-  const [name, setName] = useState("");
+const RegistrationSetUsername = ({ navigation, route }) => {
+  const [userName, setUserName] = useState("");
 
-  const { email, password } = route.params;
+  const { email, password, name } = route.params;
 
   const handleRegistration = () => {
     email !== "" &&
@@ -26,10 +26,10 @@ const CompleteRegistration = ({ navigation, route }) => {
               posts: 0,
               bio: "",
               name: name,
-              userName: "",
+              userName: userName,
               website: "",
               profilePicture:
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Finstastatistics.com%2F&psig=AOvVaw0wdP2VhPEWUchMA-4_WsT2&ust=1608578232540000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJiCsYWj3e0CFQAAAAAdAAAAABAD",
+                "https://instagram.fadb2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ad=z-m&_nc_ht=instagram.fadb2-1.fna.fbcdn.net&_nc_ohc=L111VlxDSxEAX_KJuky&oh=ee28bc6a526f59a17bf7b877301faf76&oe=6008E38F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2",
               userId: user.user.uid,
             });
         })
@@ -39,29 +39,21 @@ const CompleteRegistration = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.body}>
       <View style={styles.emailContainer}>
-        <Text style={styles.header}>Tell us more about You</Text>
-        <View style={styles.emailChooser}>
-          <Text style={styles.emailChooserText}>Your Name</Text>
-        </View>
+        <Text style={styles.header}>Change Username</Text>
+        <Text style={styles.nameText}>
+          Pick a username for your account. You can always change it later.
+        </Text>
         <TextInput
           style={styles.registerInput}
-          value={name}
-          onChangeText={(text) => setName(text)}
-          placeholder="What's Your name?"
-          placeholderTextColor="rgb(123, 123, 123)"
-          keyboardAppearance="dark"
-        />
-        <TextInput
-          style={[styles.registerInput, styles.passwordInputOption]}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          placeholder="Password"
+          value={userName}
+          onChangeText={(text) => setUserName(text)}
+          placeholder="Username"
           placeholderTextColor="rgb(123, 123, 123)"
           keyboardAppearance="dark"
         />
         <Pressable
           style={
-            email !== "" && password !== ""
+            userName !== ""
               ? [styles.nextButton, styles.activeNextButton]
               : styles.nextButton
           }
@@ -69,12 +61,12 @@ const CompleteRegistration = ({ navigation, route }) => {
         >
           <Text
             style={
-              email !== "" && password !== ""
+              userName !== ""
                 ? [styles.nextButtonText, styles.activeNextButtonText]
                 : styles.nextButtonText
             }
           >
-            Register
+            Next
           </Text>
         </Pressable>
       </View>
@@ -82,4 +74,4 @@ const CompleteRegistration = ({ navigation, route }) => {
   );
 };
 
-export default CompleteRegistration;
+export default RegistrationSetUsername;

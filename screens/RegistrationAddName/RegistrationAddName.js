@@ -1,34 +1,25 @@
 import React, { useState } from "react";
 import { SafeAreaView, Text, View, Pressable } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import db, { auth } from "../../firebase";
 import styles from "./styles";
 
-const RegisterScreen = ({navigation}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const RegistrationAddName = ({ navigation, route }) => {
+  const [name, setName] = useState("");
+
+  const { email, password } = route.params;
 
   return (
     <SafeAreaView style={styles.body}>
       <View style={styles.emailContainer}>
-        <Text style={styles.header}>Let's create your account</Text>
-        <View style={styles.emailChooser}>
-          <Text style={styles.emailChooserText}>Email and Password</Text>
-        </View>
+        <Text style={styles.header}>Add Your Name</Text>
+        <Text style={styles.nameText}>
+          Add your name so friends can find you.
+        </Text>
         <TextInput
           style={styles.registerInput}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          placeholder="Email adress"
-          placeholderTextColor="rgb(123, 123, 123)"
-          keyboardAppearance="dark"
-        />
-        <TextInput
-          style={[styles.registerInput, styles.passwordInputOption]}
-          value={password}
-          secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
-          placeholder="Password"
+          value={name}
+          onChangeText={(text) => setName(text)}
+          placeholder="Full name"
           placeholderTextColor="rgb(123, 123, 123)"
           keyboardAppearance="dark"
         />
@@ -38,9 +29,10 @@ const RegisterScreen = ({navigation}) => {
               ? [styles.nextButton, styles.activeNextButton]
               : styles.nextButton
           }
-          onPress={() => navigation.navigate('RegistrationAddName', {
+          onPress={() => navigation.navigate('RegistrationWelcomeScreen', {
             email: email,
-            password: password
+            password: password,
+            name: name
           })}
         >
           <Text
@@ -58,4 +50,4 @@ const RegisterScreen = ({navigation}) => {
   );
 };
 
-export default RegisterScreen;
+export default RegistrationAddName;
