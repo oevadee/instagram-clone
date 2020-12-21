@@ -1,6 +1,5 @@
-# instagram-clone
+# Instagram clone in react native with node.js backend
 
-## Instagram clone in react native with node.js backend
 
 To run the app simply:
 
