@@ -41,7 +41,7 @@ const AddImage = () => {
       quality: 1,
     });
 
-    console.log(result);
+    console.log('image pick -- ', result);
 
     if (!result.cancelled) {
       setImage(result.uri);

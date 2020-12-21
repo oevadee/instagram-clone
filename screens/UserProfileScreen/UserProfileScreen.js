@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import { Pressable, SafeAreaView, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -9,23 +9,51 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 import Miniature from "../../components/Miniature/Miniature";
 
-// Data
-import userData from "../../helpers/dataManager";
+// Firebase
+import db from "../../firebase";
 
-const UserProfileScreen = ({ navigation }) => {
+const UserProfileScreen = ({ navigation, route }) => {
+  const [userParams, setUserParams] = useState(null);
+  const [posts, setPosts] = useState(null);
+  const { userName_uid } = route.params;
+
+  useEffect(() => {
+    if (userName_uid !== undefined) {
+      db.collection("userData")
+        .doc("users")
+        .collection("users")
+        .doc(userName_uid)
+        .get()
+        .then((snap) => setUserParams(snap.data()));
+      db.collection("userData")
+        .doc("users")
+        .collection("users")
+        .doc(userName_uid)
+        .collection("userPosts")
+        .onSnapshot((snap) => setPosts(snap.docs.map((doc) => doc.data())));
+    }
+    console.log("userName_uid -- ", userName_uid);
+  }, [userName_uid]);
+
+  useEffect(() => {
+    console.log("posts -- ", posts);
+  }, [posts]);
+
   return (
     <SafeAreaView style={styles.body}>
       <Header2 navigation={navigation} />
       <ScrollView>
-        <ProfileInfo
-          profilePicture={userData.profilePicture}
-          posts={userData.posts}
-          followers={userData.followers}
-          following={userData.following}
-          name={userData.name}
-          bio={userData.bio}
-          website={userData.website}
-        />
+        {userParams && (
+          <ProfileInfo
+            profilePicture={userParams.profilePicture}
+            posts={userParams.posts}
+            followers={userParams.followers}
+            following={userParams.following}
+            name={userParams.name}
+            bio={userParams.bio}
+            website={userParams.website}
+          />
+        )}
         <Pressable
           onPress={() => setPressed(!pressed)}
           style={({ pressed }) => [
@@ -47,22 +75,24 @@ const UserProfileScreen = ({ navigation }) => {
             </View>
           </View>
           <View style={styles.galleryView}>
-            {userData.userPosts.map((post) => (
-              <Miniature
-                onPress={() =>
-                  navigation.push("PreviewImage", {
-                    uri: post.uri,
-                    likes: post.likes,
-                    description: post.description,
-                    comments: post.comments,
-                    user: post.user,
-                    navigation: navigation,
-                  })
-                }
-                key={post._uid}
-                imageUri={post.miniatureUri}
-              />
-            ))}
+            {posts &&
+              posts.map((post) => (
+                <Miniature
+                  onPress={() =>
+                    navigation.push("PreviewImage", {
+                      uri: post.uri,
+                      likes: post.likes,
+                      description: post.description,
+                      comments: post.comments,
+                      userName: post.userName,
+                      _uid: post._uid,
+                      userName_uid: userName_uid,
+                    })
+                  }
+                  key={post._uid}
+                  imageUri={post.uri}
+                />
+              ))}
           </View>
         </View>
       </ScrollView>

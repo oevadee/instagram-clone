@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 13,
     color: "#f5f5f5",
-    marginBottom: 5,
+    marginBottom: 10,
   },
   bioDescription: {
     fontSize: 13,

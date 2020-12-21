@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './styles';
+import styles from "./styles";
 import { Image, Text, View } from "react-native";
 
 const ProfileInfo = ({
@@ -34,9 +34,11 @@ const ProfileInfo = ({
       </View>
       <View style={styles.bio}>
         <Text style={styles.bioName}>{name}</Text>
-        <Text style={styles.bioDescription}>
-          {bio} <Text onPress={handleLinkPress}>{website}</Text>
-        </Text>
+        {bio !== '' && (
+          <Text style={styles.bioDescription}>
+            {bio} <Text onPress={handleLinkPress}>{website}</Text>
+          </Text>
+        )}
       </View>
     </>
   );

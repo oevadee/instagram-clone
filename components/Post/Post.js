@@ -19,12 +19,16 @@ const Post = ({
   uri,
   profilePicture,
   userName,
+  userName_uid,
+  route
 }) => {
   const [liked, setLiked] = useState(false);
   const [commentsSize, setCommentsSize] = useState(null);
   const [comments, setComments] = useState(null);
 
   const navigation = useNavigation();
+
+  const {userName_uid} = route.params
 
   useEffect(() => {
     db.collection("userData")
@@ -39,11 +43,16 @@ const Post = ({
       .doc(_uid)
       .collection("comments")
       .onSnapshot((snap) => setComments(snap.docs.map((doc) => doc.data())));
+    db.collection("userData")
+      .doc("posts")
+      .collection("posts")
+      .doc(_uid)
+      .get();
   }, [_uid]);
 
   useEffect(() => {
-    console.log(comments)
-  }, [comments])
+    console.log(userName_uid);
+  }, [userName_uid]);
 
   return (
     <View style={styles.post}>
@@ -53,7 +62,13 @@ const Post = ({
             style={styles.postHeaderUserImage}
             source={{ uri: profilePicture }}
           />
-          <Pressable onPress={() => navigation.push("UserProfile")}>
+          <Pressable
+            onPress={() =>
+              navigation.push("UserProfile", {
+                userName_uid: userName_uid,
+              })
+            }
+          >
             <Text style={styles.postHeaderUserText}>{userName}</Text>
           </Pressable>
         </View>
@@ -67,7 +82,7 @@ const Post = ({
           <Ionicons
             onPress={() => {
               setLiked(!liked);
-              Haptics.selectionAsync()
+              Haptics.selectionAsync();
             }}
             name="ios-heart"
             size={26}
@@ -114,7 +129,9 @@ const Post = ({
         >
           <Text style={styles.commentsButton}>
             View{" "}
-            {comments && commentsSize === 1 ? "1 comment" : `all ${commentsSize} comments`}
+            {comments && commentsSize === 1
+              ? "1 comment"
+              : `all ${commentsSize} comments`}
           </Text>
         </Pressable>
       </View>

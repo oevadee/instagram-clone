@@ -56,6 +56,7 @@ const HomeScreen = ({ navigation }) => {
               views={post.views}
               description={post.description}
               uri={post.uri}
+              userName_uid={post.userName_uid}
             />
           );
         })}
