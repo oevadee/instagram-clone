@@ -20,15 +20,12 @@ const Post = ({
   profilePicture,
   userName,
   userName_uid,
-  route
 }) => {
   const [liked, setLiked] = useState(false);
   const [commentsSize, setCommentsSize] = useState(null);
   const [comments, setComments] = useState(null);
 
   const navigation = useNavigation();
-
-  const {userName_uid} = route.params
 
   useEffect(() => {
     db.collection("userData")
@@ -66,6 +63,7 @@ const Post = ({
             onPress={() =>
               navigation.push("UserProfile", {
                 userName_uid: userName_uid,
+                post_uid: _uid
               })
             }
           >

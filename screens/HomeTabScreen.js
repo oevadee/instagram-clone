@@ -12,6 +12,7 @@ import ProfileStackScreen from "./ProfileStackScreen";
 
 // Icons
 import Ionicons from "react-native-vector-icons/Ionicons";
+import AddImageStackScreen from "./AddImageStackScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -49,11 +50,11 @@ const HomeTabScreen = () => {
         },
         showLabel: false,
       }}
-      initialRouteName="Home"
+      initialRouteName="AddImage"
     >
       <Tab.Screen name="Home" component={HomeStackScreen} />
       <Tab.Screen name="Explore" component={ExploreScreen} />
-      <Tab.Screen name="AddImage" component={AddImage} />
+      <Tab.Screen name="AddImage" component={AddImageStackScreen} />
       <Tab.Screen name="Store" component={StoreScreen} />
       <Tab.Screen name="Profile" component={ProfileStackScreen} />
     </Tab.Navigator>

@@ -17,7 +17,7 @@ import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 
 // Firebase
 import * as firebase from "firebase";
-import db from "../../firebase";
+import db, { auth } from "../../firebase";
 
 // Redux
 import { useSelector } from "react-redux";
@@ -30,7 +30,8 @@ const ProfileScreen = ({ navigation }) => {
 
   useEffect(() => {
     user &&
-      db.collection("userData")
+      db
+        .collection("userData")
         .doc("users")
         .collection("users")
         .doc(user.userId)
@@ -54,17 +55,7 @@ const ProfileScreen = ({ navigation }) => {
         />
       )}
       <ScrollView>
-        {user && (
-          <ProfileInfo
-            profilePicture={user.profilePicture}
-            posts={user.posts}
-            followers={user.followers}
-            following={user.following}
-            name={user.name}
-            bio={user.bio}
-            website={user.website}
-          />
-        )}
+        {user && <ProfileInfo userName_uid={auth.currentUser.uid} />}
         <Pressable
           onPress={() => setPressed(!pressed)}
           style={({ pressed }) => [
@@ -91,13 +82,8 @@ const ProfileScreen = ({ navigation }) => {
                 <Miniature
                   onPress={() =>
                     navigation.push("PreviewImage", {
-                      uri: post.uri,
-                      likes: post.likes,
-                      views: post.views,
-                      description: post.description,
-                      _uid: post._uid,
-                      userName: post.userName,
-                      profilePicture: post.profilePicture,
+                      userName_uid: auth.currentUser.uid,
+                      post_uid: post._uid
                     })
                   }
                   key={post._uid}

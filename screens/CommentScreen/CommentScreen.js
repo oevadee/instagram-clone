@@ -45,7 +45,7 @@ const CommentScreen = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.body}>
-      <Header2 navigation={navigation} commentSectionActive={true} />
+      <Header2 navigation={navigation} activeSection='CommentScreen' />
       <ScrollView indicatorStyle="white">
         {comments && comments.map(({ addedBy, comment, profilePicture, _uid }) => (
           <Comment

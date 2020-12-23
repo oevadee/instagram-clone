@@ -15,7 +15,7 @@ import db from "../../firebase";
 const UserProfileScreen = ({ navigation, route }) => {
   const [userParams, setUserParams] = useState(null);
   const [posts, setPosts] = useState(null);
-  const { userName_uid } = route.params;
+  const { userName_uid, post_uid } = route.params;
 
   useEffect(() => {
     if (userName_uid !== undefined) {
@@ -41,17 +41,11 @@ const UserProfileScreen = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.body}>
-      <Header2 navigation={navigation} />
+      <Header2 activeSection='UserProfileScreen' />
       <ScrollView>
         {userParams && (
           <ProfileInfo
-            profilePicture={userParams.profilePicture}
-            posts={userParams.posts}
-            followers={userParams.followers}
-            following={userParams.following}
-            name={userParams.name}
-            bio={userParams.bio}
-            website={userParams.website}
+            userName_uid={userName_uid}
           />
         )}
         <Pressable
@@ -80,12 +74,7 @@ const UserProfileScreen = ({ navigation, route }) => {
                 <Miniature
                   onPress={() =>
                     navigation.push("PreviewImage", {
-                      uri: post.uri,
-                      likes: post.likes,
-                      description: post.description,
-                      comments: post.comments,
-                      userName: post.userName,
-                      _uid: post._uid,
+                      post_uid: post_uid,
                       userName_uid: userName_uid,
                     })
                   }
