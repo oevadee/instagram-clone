@@ -28,7 +28,7 @@ const AddImage2 = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.body}>
-      <Header2 activeSection="AddImage2" />
+      <Header2 activeSection="AddImage2" image={image} description={description} />
       <View style={styles.body}>
         <View style={styles.addDescription}>
           <Image source={{ uri: image }} style={styles.addDescriptionImage} />

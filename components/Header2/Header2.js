@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Pressable, Text, View } from "react-native";
 import styles from "./styles";
 
@@ -10,8 +10,14 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 // Data
 import userData from "../../helpers/dataManager";
 
-const Header2 = ({ activeSection, image = null }) => {
+import db, { auth } from '../../firebase';
+
+const Header2 = ({ activeSection, image = null, description = null }) => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    db.collection('userData')
+  }, [])
 
   return (
     <View style={styles.header}>
@@ -50,6 +56,21 @@ const Header2 = ({ activeSection, image = null }) => {
             navigation.navigate("AddImage2", {
               image: image,
             });
+            if (activeSection === "AddImage2") {
+              const _uid = db.createId();
+              db.collection('userData').doc('post').collection('post').doc(_uid).set({
+                _uid: _uid,
+                url: image,
+                description: description,
+                likes: 0,
+                userName: 
+                profilePicture:
+                userName_uid: 
+              })
+              setTimeout(() => {
+                navigation.navigate('Home')
+              }, 2000);
+            }
         }}
       >
         <Text style={styles.headerRightText}>{activeSection === "AddImage" ? 'Next' : 'Share'}</Text>
