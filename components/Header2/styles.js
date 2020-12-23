@@ -9,15 +9,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 15,
-    borderColor: "blue",
-    borderWidth: 1,
     marginBottom: 20,
   },
   icon: {
     height: 40,
     width: 60,
-    borderColor: "yellow",
-    borderWidth: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
@@ -26,8 +22,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    borderColor: "blue",
-    borderWidth: 1,
   },
   headerInfoUser: {
     fontSize: 12,
@@ -41,8 +35,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   headerRight: {
-    borderColor: "red",
-    borderWidth: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

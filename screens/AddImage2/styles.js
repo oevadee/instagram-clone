@@ -7,11 +7,11 @@ const styles = StyleSheet.create({
     display: "flex",
   },
   addDescription: {
-    height: 100,
     padding: 20,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     borderBottomColor: 'rgb(35,35,35)',
     borderWidth: 1
   },
@@ -21,12 +21,29 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   addDescriptionInput: {
-    borderColor: 'red',
-    borderWidth: 1,
     flex: 1,
     height: '100%',
     color: '#fff',
-    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  addDescriptionText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  addDescriptionSocialContainer: {
+    padding: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    borderBottomColor: 'rgb(35,35,35)',
+    borderWidth: 1,
+  },
+  addDescriptionSocials: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 40
   }
 });
 
