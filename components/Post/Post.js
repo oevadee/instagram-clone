@@ -14,7 +14,6 @@ import * as Haptics from "expo-haptics";
 const Post = ({
   _uid,
   likes,
-  views,
   description,
   uri,
   profilePicture,
@@ -109,7 +108,7 @@ const Post = ({
             {liked ? parseInt(likes) + 1 : parseInt(likes)} likes
           </Text>
         ) : (
-          <Text style={styles.postTagsLikes}>{views} views</Text>
+          <Text style={styles.postTagsLikes}>{} </Text>
         )}
         <View style={styles.postTagsDescription}>
           <Text style={styles.postTagsUsername}>

@@ -29,8 +29,8 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const App = () => {
-  // const user = useSelector(selectUser);
-  const user = true;
+  const user = useSelector(selectUser);
+  // const user = true;
 
   const dispatch = useDispatch();
 

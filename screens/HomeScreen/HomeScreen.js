@@ -53,7 +53,6 @@ const HomeScreen = ({ navigation }) => {
               profilePicture={post.profilePicture}
               userName={post.userName}
               likes={post.likes}
-              views={post.views}
               description={post.description}
               uri={post.uri}
               userName_uid={post.userName_uid}
