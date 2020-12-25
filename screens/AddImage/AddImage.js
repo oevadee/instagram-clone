@@ -19,20 +19,13 @@ import Header2 from "../../components/Header2/Header2";
 import * as FileSystem from "expo-file-system";
 
 const AddImage = () => {
-  const [image, setImage] = useState(
-    "https://images.unsplash.com/photo-1571950337229-f78566132580?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2553&q=80"
-  );
+  const [image, setImage] = useState(null);
 
-  // useEffect(async () => {
-  //     const {
-  //       status,
-  //     } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-  //     if (Platform.OS !== "web") {
-  //       if (status !== "granted") {
-  //         alert("Sorry, we need camera roll permissions to make this work!");
-  //       }
-  //     }
-  // }, []);
+  useEffect(() => {
+    fetch("https://source.unsplash.com/random/600x600?dog").then((res) =>
+      setImage(res.url)
+    );
+  });
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -52,7 +45,7 @@ const AddImage = () => {
   return (
     <SafeAreaView style={styles.body}>
       <View style={styles.body}>
-        <Header2 activeSection="AddImage" image={image} />
+        <Header2 activeSection="AddImage" image={image} setImage={setImage} />
         <View style={styles.addImageContainer}>
           <View style={styles.chosenImageContainer}>
             <Image source={{ uri: image }} style={styles.chosenImage} />

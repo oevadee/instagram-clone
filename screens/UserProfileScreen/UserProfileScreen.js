@@ -36,8 +36,12 @@ const UserProfileScreen = ({ navigation, route }) => {
   }, [userName_uid]);
 
   useEffect(() => {
-    console.log("posts -- ", posts);
-  }, [posts]);
+    console.log("userName_uid --- ", userName_uid);
+  }, [userName_uid]);
+
+  useEffect(() => {
+    console.log("postInfo --- ", post_uid);
+  }, [post_uid]);
 
   return (
     <SafeAreaView style={styles.body}>

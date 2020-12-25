@@ -50,7 +50,7 @@ const HomeTabScreen = () => {
         },
         showLabel: false,
       }}
-      initialRouteName="AddImage"
+      initialRouteName="Home"
     >
       <Tab.Screen name="Home" component={HomeStackScreen} />
       <Tab.Screen name="Explore" component={ExploreScreen} />

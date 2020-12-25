@@ -27,28 +27,35 @@ const Post = ({
   const navigation = useNavigation();
 
   useEffect(() => {
-    db.collection("userData")
-      .doc("posts")
-      .collection("posts")
-      .doc(_uid)
-      .collection("comments")
-      .onSnapshot((snap) => setCommentsSize(snap.size));
-    db.collection("userData")
-      .doc("posts")
-      .collection("posts")
-      .doc(_uid)
-      .collection("comments")
-      .onSnapshot((snap) => setComments(snap.docs.map((doc) => doc.data())));
-    db.collection("userData")
-      .doc("posts")
-      .collection("posts")
-      .doc(_uid)
-      .get();
+    if (_uid) {
+      db.collection("userData")
+        .doc("posts")
+        .collection("posts")
+        .doc(_uid)
+        .collection("comments")
+        .onSnapshot((snap) => setCommentsSize(snap.size));
+      db.collection("userData")
+        .doc("posts")
+        .collection("posts")
+        .doc(_uid)
+        .collection("comments")
+        .onSnapshot((snap) => setComments(snap.docs.map((doc) => doc.data())));
+      db.collection("userData")
+        .doc("posts")
+        .collection("posts")
+        .doc(_uid)
+        .get();
+    }
   }, [_uid]);
 
   useEffect(() => {
     console.log(userName_uid);
   }, [userName_uid]);
+
+  const handleLike = () => {
+    Haptics.selectionAsync();
+    setLiked(!liked);
+  };
 
   return (
     <View style={styles.post}>
@@ -62,7 +69,7 @@ const Post = ({
             onPress={() =>
               navigation.push("UserProfile", {
                 userName_uid: userName_uid,
-                post_uid: _uid
+                post_uid: _uid,
               })
             }
           >
@@ -77,10 +84,7 @@ const Post = ({
       <View style={styles.postUtils}>
         <View style={styles.postUtilsLeft}>
           <Ionicons
-            onPress={() => {
-              setLiked(!liked);
-              Haptics.selectionAsync();
-            }}
+            onPress={handleLike}
             name="ios-heart"
             size={26}
             color={liked ? "rgb(253, 50, 73)" : "#fff"}
@@ -103,13 +107,9 @@ const Post = ({
         </View>
       </View>
       <View style={styles.postTags}>
-        {likes ? (
-          <Text style={styles.postTagsLikes}>
-            {liked ? parseInt(likes) + 1 : parseInt(likes)} likes
-          </Text>
-        ) : (
-          <Text style={styles.postTagsLikes}>{} </Text>
-        )}
+        <Text style={styles.postTagsLikes}>
+          {liked ? parseInt(likes) + 1 : parseInt(likes)} likes
+        </Text>
         <View style={styles.postTagsDescription}>
           <Text style={styles.postTagsUsername}>
             {userName}

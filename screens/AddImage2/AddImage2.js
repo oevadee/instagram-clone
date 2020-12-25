@@ -24,11 +24,11 @@ const AddImage2 = ({ navigation, route }) => {
   const [isEnabled1, setIsEnabled1] = useState(false);
   const [isEnabled2, setIsEnabled2] = useState(false);
   const [isEnabled3, setIsEnabled3] = useState(false);
-  const { image } = route.params;
+  const { image, setImage } = route.params;
 
   return (
     <SafeAreaView style={styles.body}>
-      <Header2 activeSection="AddImage2" image={image} description={description} />
+      <Header2 activeSection="AddImage2" image={image} setImage={setImage} description={description} />
       <View style={styles.body}>
         <View style={styles.addDescription}>
           <Image source={{ uri: image }} style={styles.addDescriptionImage} />

@@ -29,8 +29,8 @@ const PreviewImage = ({ navigation, route }) => {
   }, [userName_uid]);
 
   useEffect(() => {
-    console.log("postInfo --- ", postInfo);
-  }, [postInfo]);
+    console.log("postInfo --- ", post_uid);
+  }, [post_uid]);
 
   return (
     <SafeAreaView style={styles.body}>
